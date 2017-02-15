@@ -508,7 +508,7 @@ bool XiaomiGateway::StartHardware()
 
 	//check there is only one instance of the Xiaomi Gateway
 	std::vector<std::vector<std::string> > result;
-	result = m_sql.safe_query("SELECT Password, Address FROM Hardware WHERE Type=%d", HTYPE_XiaomiGateway);
+	result = m_sql.safe_query("SELECT Password, Address FROM Hardware WHERE (Type=%d AND (ID='%d'))", HTYPE_XiaomiGateway, this.m_HwdID);
 	if (result.size() > 1)
 	{
 		_log.Log(LOG_ERROR, "XiaomiGateway: Only one Xiaomi Gateway is supported, please remove any duplicates from Hardware");
